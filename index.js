@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 function licenseBadge(data) {
-    console.log(data)
     const licenseType = data
     let licenseString = " "
     if (licenseType == "MIT") {
@@ -15,52 +14,56 @@ function licenseBadge(data) {
        licenseString = `![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)`
       };
     if (licenseType == "GNU General Public License 3.0") {
-        console.log("Working!")
         licenseString = `![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)`
+      };
+    if (licenseType == "None") {
+        licenseString = "(Not licensed for use of any kind)"
       };
     return licenseString
     };
 
 const generateREADME = ({ title, license, description, installation, usage, contributing, tests,  
     github, email }) => `
-    # ${title}
+# ${title}
 
-    #license
-    ${license}
-    ${licenseBadge(license)}
+## Table of Contents
 
-    ## Description
-    
-    ${description}
-    
-    ## Table of Contents
-    
-    - Installation
-    - Usage
-    - Credits
-    - License
-    
-    ## Installation
-    
-    ${installation}
-    
-    ## Usage
-    
-    ${usage}
-    
-    ## License
-    
-    ## How to Contribute
-    
-    ${contributing}
-    
-    ## Tests
-    
-    ${tests}
-    
-    ## For Questions
-    My GitHub: https://github.com/${github}
-    My email: ${email}`;
+- [Description](#description)
+- [License](#license)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+
+## Description
+
+${description}
+
+## License
+
+${license}
+
+${licenseBadge(license)}
+
+## Installation
+
+${installation}
+
+## Usage
+
+${usage}
+
+## How to Contribute
+
+${contributing}
+
+## Tests
+
+${tests}
+
+## For Questions
+GitHub: https://github.com/${github}
+email: ${email}`;
 
 inquirer.prompt([
     {
@@ -96,7 +99,7 @@ inquirer.prompt([
     {
         type: "checkbox",
         message: "What license does the project have?",
-        choices: ["MIT", "GNU General Public License 2.0", "Apache License 2.0", "GNU General Public License 3.0"],
+        choices: ["MIT", "GNU General Public License 2.0", "Apache License 2.0", "GNU General Public License 3.0", "None"],
         name: "license"
     },
     {
