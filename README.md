@@ -25,3 +25,6 @@ The application is run through Node.js and uses the Inquirer npm.
 ## Usage
 
 The user runs the application through the command line and answers the questions, and the file is automatically generated. If necessary, they can then edit the new file.
+
+## Video demonstration
+https://www.youtube.com/watch?v=NnJ4IvklIqg
